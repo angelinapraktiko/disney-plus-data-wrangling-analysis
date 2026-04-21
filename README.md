@@ -4,61 +4,90 @@ Proses data wrangling dan eksplorasi data (EDA) pada dataset Disney+ menggunakan
 ---
 
 ## Deskripsi
-Project ini bertujuan untuk melakukan proses end-to-end data wrangling pada dataset Disney+ serta melakukan eksplorasi data (Exploratory Data Analysis / EDA) untuk mendapatkan insight dari data.
+Project ini merupakan proses end-to-end data wrangling pada dataset Disney+ yang mencakup tahap eksplorasi data (EDA), pembersihan data, transformasi, feature engineering, hingga analisis tren.
 
 ---
 
 ## Tujuan
-- Membersihkan data dari missing values dan duplikasi
-- Melakukan transformasi data agar siap dianalisis
-- Mengeksplorasi distribusi data
-- Mendapatkan insight dari dataset Disney+
+- Memahami karakteristik dataset Disney+
+- Membersihkan dan mempersiapkan data untuk analisis
+- Menghasilkan insight terkait distribusi konten
 
 ---
 
-## Dataset
-Dataset yang digunakan adalah data katalog tayangan Disney+ yang berisi informasi seperti:
-- Judul
-- Tipe (Movie / TV Show)
-- Director & Cast
-- Rating
-- Tahun rilis
-- Durasi
-- Negara
+## Tahapan Analisis
 
----
+### 1. Exploratory Data Analysis (EDA)
+- Dataset terdiri dari 1450 data dan 12 kolom
+- Tidak ditemukan data duplikat
+- Ditemukan missing values pada kolom:
+  - director (~32%)
+  - cast (~13%)
+  - country (~15%)
 
-## Tahapan Data Wrangling
-- Data Cleaning (handling missing values & duplicate data)
-- Data Transformation
-- Feature Engineering (contoh: konversi durasi ke menit)
-- Exploratory Data Analysis (EDA)
-- Data Visualization
+**Insight:**
+- Konten didominasi oleh **Movie (~72%)**
+- Mayoritas konten berasal dari **United States (~69%)**
+- Genre dominan: **Animation, Family, Comedy**
+- Rating didominasi konten **ramah keluarga**
 
----
 
-## Analisis yang Dilakukan
-- Distribusi tipe konten (Movie vs TV Show)
-- Distribusi rating
-- Distribusi tahun rilis
-- Analisis durasi tayangan
-- Top negara, director, dan cast
+### 2. Data Cleaning
+- Missing value pada `director`, `cast`, `country` diisi dengan label khusus
+- `date_added` dikonversi ke datetime dan diisi dengan forward/backward fill
+- `duration_minutes` diisi menggunakan median
+- `rating` dikonversi ke numerik
+
+
+
+### 3. Data Transformation
+- Standardisasi (Z-score) pada rating
+- Normalisasi Min-Max pada:
+  - rating
+  - release_year
+- Encoding:
+  - Label Encoding (`type`, `rating`)
+  - One-hot encoding (`country`, `genre`)
+
+
+
+### 4. Feature Engineering
+Membuat fitur baru:
+- `is_kids` → mengidentifikasi konten untuk anak berdasarkan genre & rating
+
+
+
+### 5. Data Joining
+- Self-join berdasarkan `director`
+- Menghubungkan film dengan sutradara yang sama
+
+
+
+### 6. Resampling Analysis
+- Analisis jumlah konten per bulan
+- Ditemukan lonjakan besar pada **November 2019**
+- Film menjadi kontributor utama
+
+
+
+## Insight Utama
+- Disney+ sangat fokus pada konten film dibandingkan serial
+- Konten didominasi oleh produksi Amerika Serikat
+- Strategi rilis menunjukkan adanya penambahan massal konten di waktu tertentu
+- Konten cenderung family-friendly
 
 ---
 
 ## Teknologi yang Digunakan
 - Python
 - Pandas
-- Matplotlib
-- Seaborn
+- NumPy
+- Matplotlib & Seaborn
+- Scikit-learn
 
 ---
 
-## ▶️ Cara Menjalankan
-1. Install library yang dibutuhkan:
-   ```bash
-   pip install pandas matplotlib seaborn
-
-2. Jalankan notebook/script:
-   ```bash
-   python main.py
+## Cara Menjalankan
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
+python main.py
