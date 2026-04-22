@@ -70,7 +70,7 @@ Membuat fitur baru:
 
 
 
-## Insight Utama
+## Insight Keseluruhan
 - Disney+ sangat fokus pada konten film dibandingkan serial
 - Konten didominasi oleh produksi Amerika Serikat
 - Strategi rilis menunjukkan adanya penambahan massal konten di waktu tertentu
@@ -78,7 +78,7 @@ Membuat fitur baru:
 
 ---
 
-## Teknologi yang Digunakan
+## Tools yang Digunakan
 - Python
 - Pandas
 - NumPy
