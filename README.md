@@ -85,9 +85,3 @@ Membuat fitur baru:
 - Matplotlib & Seaborn
 - Scikit-learn
 
----
-
-## Cara Menjalankan
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
-python main.py
